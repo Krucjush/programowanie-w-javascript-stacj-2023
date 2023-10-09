@@ -5,31 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lab 1</title>
   </head>
-  <input type="text" id="liczba1" />
-  <input type="text" id="liczba2" />
-  <input type="text" id="liczba3" />
-  <input type="text" id="liczba4" />
-  <!-- <button id="przelicz">Przelicz</button> -->
+  <div id="numbers">
+    <input type="text" id="number1"/>
+    <input type="text" id="number2"/>
+    <input type="text" id="number3"/>
+  </div>
+  <button id="dodaj">Dodaj pole</button>
   <div id="wyniki"></div>
   <script src="main.js" type="text/javascript"></script>
   <script type="text/javascript">
 
     const wynik = document.querySelector('#wyniki')
+    let numbersCount = document.querySelector('#numbers').childElementCount
+    console.log(numbersCount)
 
     let valuesDictionary = new Object()
 
-    for (let i = 1; i < 5; i++) {
-      const inputElement = document.querySelector(`#liczba${i}`)
+    for (let i = 1; i < numbersCount; i++) {
+      const inputElement = document.querySelector(`#number${i}`)
       // Add event listeners for every input field
       inputElement.addEventListener('change', () => {
-        for (let j = 1; j < 5; j++) {
-          const input = document.querySelector(`#liczba${j}`)
+        for (let j = 1; j < numbersCount; j++) {
+          const input = document.querySelector(`#number${j}`)
           // Input value as integer
           const inputValue = parseInt(input.value)
           
           // If the input value is a number then add it to the dictionary, otherwise remove it.
           if (!isNaN(inputValue)) {
             valuesDictionary[`l${j}v`] = inputValue
+            console.log(valuesDictionary)
           }
           else {
             delete valuesDictionary[`l${j}v`]
@@ -66,21 +70,18 @@
       })
     }
 
-    // Shame version
-    ////////////////////////////////////////////////////////////////////////////////////////////////////
-    // const przeliczBtn = document.querySelector('#przelicz')
-    // przeliczBtn.addEventListener('click', () => {
-    //   const l1v = parseInt(l1.value)
-    //   const l2v = parseInt(l2.value)
-    //   const l3v = parseInt(l3.value)
-    //   const l4v = parseInt(l4.value)
-    //   const sum = l1v + l2v + l3v + l4v
-    //   const avg = sum / 4
-    //   const min = Math.min(l1v, l2v, l3v, l4v)
-    //   const max = Math.max(l1v, l2v, l3v, l4v)
-    //   wynik.innerHTML = 'Suma: ' + sum + '\nAverage: ' + avg + '\nMin: ' + min + '\nMax: ' + max
-    // })
-    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    const node = document.querySelector('#numbers')
+
+    const dodajBtn = document.querySelector('#dodaj')
+    dodajBtn.addEventListener('click', () => {
+      const index = parseInt(node.lastElementChild.id[node.lastElementChild.id.length - 1]) + 1
+      const inputElement = document.createElement('input')
+      inputElement.setAttribute('type', 'text')
+      inputElement.setAttribute('id', `number${index}`)
+      node.appendChild(inputElement)
+      numbersCount = document.querySelector('#numbers').childElementCount
+      console.log(numbersCount)
+    })
   </script>
   <body></body>
 </html>
