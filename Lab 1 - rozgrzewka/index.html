@@ -10,22 +10,45 @@
     <input type="text" id="number2"/>
     <input type="text" id="number3"/>
   </div>
-  <button id="dodaj">Dodaj pole</button>
+  <button id="dodaj">Add input field</button>
   <div id="wyniki"></div>
   <script src="main.js" type="text/javascript"></script>
   <script type="text/javascript">
 
     const wynik = document.querySelector('#wyniki')
     let numbersCount = document.querySelector('#numbers').childElementCount
-    console.log(numbersCount)
 
     let valuesDictionary = new Object()
 
-    for (let i = 1; i < numbersCount; i++) {
+    for (let i = 1; i <= numbersCount; i++) {
       const inputElement = document.querySelector(`#number${i}`)
       // Add event listeners for every input field
       inputElement.addEventListener('change', () => {
-        for (let j = 1; j < numbersCount; j++) {
+        calculate()
+      })
+    }
+
+    const node = document.querySelector('#numbers')
+
+    const dodajBtn = document.querySelector('#dodaj')
+    // Add event listenet for the button to add an input field every time it's clicked.
+    dodajBtn.addEventListener('click', () => {
+      const index = parseInt(node.lastElementChild.id[node.lastElementChild.id.length - 1]) + 1
+      const inputElement = document.createElement('input')
+      inputElement.setAttribute('type', 'text')
+      inputElement.setAttribute('id', `number${index}`)
+      // Add event listener to each input field created to calculate desired values each time any value changes.
+      inputElement.addEventListener('change', () => {
+        calculate()
+      })
+      // Append the element to the node.
+      node.appendChild(inputElement)
+      numbersCount = document.querySelector('#numbers').childElementCount
+    })
+
+    // Function for keeping track of currently filled input fields, and calculating sum, average, min and max value from the #numbers container.
+    function calculate() {
+      for (let j = 1; j <= numbersCount; j++) {
           const input = document.querySelector(`#number${j}`)
           // Input value as integer
           const inputValue = parseInt(input.value)
@@ -33,7 +56,6 @@
           // If the input value is a number then add it to the dictionary, otherwise remove it.
           if (!isNaN(inputValue)) {
             valuesDictionary[`l${j}v`] = inputValue
-            console.log(valuesDictionary)
           }
           else {
             delete valuesDictionary[`l${j}v`]
@@ -67,21 +89,7 @@
         else {
           wynik.innerHTML = ''
         }
-      })
     }
-
-    const node = document.querySelector('#numbers')
-
-    const dodajBtn = document.querySelector('#dodaj')
-    dodajBtn.addEventListener('click', () => {
-      const index = parseInt(node.lastElementChild.id[node.lastElementChild.id.length - 1]) + 1
-      const inputElement = document.createElement('input')
-      inputElement.setAttribute('type', 'text')
-      inputElement.setAttribute('id', `number${index}`)
-      node.appendChild(inputElement)
-      numbersCount = document.querySelector('#numbers').childElementCount
-      console.log(numbersCount)
-    })
   </script>
   <body></body>
 </html>
