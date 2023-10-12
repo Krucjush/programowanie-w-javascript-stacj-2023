@@ -4,14 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lab 1</title>
+    <link rel="stylesheet" href="styles.css">
+    <h2>Calculator</h2>
   </head>
-  <div id="numbers">
-    <input type="text" id="number1"/>
-    <input type="text" id="number2"/>
-    <input type="text" id="number3"/>
+  <div class="container">
+    <div id="numbers">
+      <input type="text" id="number1"/>
+      <input type="text" id="number2"/>
+      <input type="text" id="number3"/>
+    </div>
+    <button id="dodaj">Add input field</button>
+    <div id="wyniki"></div>
   </div>
-  <button id="dodaj">Add input field</button>
-  <div id="wyniki"></div>
   <script src="main.js" type="text/javascript"></script>
   <script type="text/javascript">
 
@@ -33,7 +37,7 @@
     const dodajBtn = document.querySelector('#dodaj')
     // Add event listenet for the button to add an input field every time it's clicked.
     dodajBtn.addEventListener('click', () => {
-      const index = parseInt(node.lastElementChild.id[node.lastElementChild.id.length - 1]) + 1
+      const index = numbersCount + 1
       const inputElement = document.createElement('input')
       inputElement.setAttribute('type', 'text')
       inputElement.setAttribute('id', `number${index}`)
@@ -41,6 +45,8 @@
       inputElement.addEventListener('change', () => {
         calculate()
       })
+      inputElement.style.marginRight = '4px'
+      inputElement.style.marginTop = '4px'
       // Append the element to the node.
       node.appendChild(inputElement)
       numbersCount = document.querySelector('#numbers').childElementCount
@@ -83,7 +89,7 @@
               }
             }
           }
-          wynik.innerHTML = `Sum: ${sum}\nAverage: ${avg}\nMax: ${max}\nMin: ${min}`
+          wynik.innerHTML = `Sum: ${sum}<br>Average: ${avg}<br>Max: ${max}<br>Min: ${min}`
         }
         // If all inputs are empty, then hide the innerHTML by assigning it to an empty string.
         else {
