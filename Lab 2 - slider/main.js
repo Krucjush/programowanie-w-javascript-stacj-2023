@@ -4,44 +4,56 @@ let position = 0
 const main = document.querySelector('main')
 const slides = document.querySelector('.slides')
 
-// jednorazowe wykonanie kodu po określonym czasie
-// const timeoutRef = setTimeout(
-//     () => {
-//         main.innerHTML = 'Msg from setTimeout'
-//     },
-//     2000
-// )
+const firstBtn = document.querySelector('#dot1')
+firstBtn.style.backgroundColor = 'black'
 
 // wykonywanie kodu co określony czas
 let licznik = 0
-const intervalRef = setInterval(
-    () => {
-        slides.style.transform = `translate(${position - 600}px)`
-        main.innerHTML = `Msg from setInterval: ${licznik++}`
-        position -= 600
-        if (licznik == 5) {
-            position = 0
-            licznik = 0
+let intervalRef = setInterval(() => {
+    slide()
+},5000)
+
+for (let i = 1; i <= 6; i++) {
+    const dotBtn = document.querySelector(`#dot${i}`)
+    dotBtn.addEventListener('click', () => {
+        
+        slides.style.transform = `translate(${(i - 1) * -600}px)`
+        position = (i - 1) * -600
+        licznik = i - 1
+        dotBtn.style.backgroundColor = 'black'
+        for (let j = 1; j <= 6; j++) {
+            if (j != i) {
+                const otherDotBtn = document.querySelector(`#dot${j}`)
+                otherDotBtn.style.backgroundColor = 'gray'
+            }
         }
-    },
-    5000
-)
+        clearInterval(intervalRef)
+        intervalRef = setInterval(() => {
+            slide()
+        },5000)
+    })
+}
 
-// function slide() {
-//     // console.log('slides call')
-//     for (let i = 0; i < slides.childElementCount - 1; i++) {
-//         slides.style.transform = "translate(-600px) 2s"
-//     }
-//     index++
-//     if (index > slides.childElementCount - 1) {index = 1}
-//     slides.children[index - 1].style.display = "block"
-//     setTimeout(slide(), 2000)
-// }
-// slide()
-
-// function slide() {
-//     for(let i = 0; i < slides.length)
-// }
+function slide() {
+    if (licznik == 5) {
+        position = 0
+        licznik = 0
+        slides.style.transform = `translate(${position}px)`
+    }
+    else {
+        slides.style.transform = `translate(${position - 600}px)`
+        position -= 600
+        licznik++
+    }
+    const dotBtn = document.querySelector(`#dot${licznik+1}`)
+    dotBtn.style.backgroundColor = 'black'
+    for (let i = 1; i <= 6; i++) {
+        if (i != licznik+1) {
+            const otherDotBtn = document.querySelector(`#dot${i}`)
+            otherDotBtn.style.backgroundColor = 'gray'
+        }
+    }
+}
 
 // kasujemy setInterval
 // clearInterval(intervalRef)
