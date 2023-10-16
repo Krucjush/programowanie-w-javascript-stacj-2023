@@ -16,37 +16,62 @@ let intervalRef = setInterval(() => {
 for (let i = 1; i <= 6; i++) {
     const dotBtn = document.querySelector(`#dot${i}`)
     dotBtn.addEventListener('click', () => {
-        
         slides.style.transform = `translate(${(i - 1) * -600}px)`
         position = (i - 1) * -600
         licznik = i - 1
         dotBtn.style.backgroundColor = 'black'
-        for (let j = 1; j <= 6; j++) {
-            if (j != i) {
-                const otherDotBtn = document.querySelector(`#dot${j}`)
-                otherDotBtn.style.backgroundColor = 'gray'
-            }
-        }
-        clearInterval(intervalRef)
-        intervalRef = setInterval(() => {
-            slide()
-        },5000)
+        clearDots()
+        restartInterval()
     })
 }
+
+leftButton = document.querySelector('#left')
+leftButton.addEventListener('click', () => {
+    if (licznik == 0) {
+        position = -3000
+        licznik = 5
+    } else {
+        position += 600
+        licznik--
+    }
+    slides.style.transform = `translate(${position}px)`
+    const dotBtn = document.querySelector(`#dot${licznik+1}`)
+    dotBtn.style.backgroundColor = 'black'
+    restartInterval()
+    clearDots()
+})
+rightButton = document.querySelector('#right')
+rightButton.addEventListener('click', () => {
+    if (licznik == 5) {
+        position = 0
+        licznik = 0
+    } else {
+        position -= 600
+        licznik++
+    }
+    slides.style.transform = `translate(${position}px)`
+    const dotBtn = document.querySelector(`#dot${licznik+1}`)
+    dotBtn.style.backgroundColor = 'black'
+    restartInterval()
+    clearDots()
+})
 
 function slide() {
     if (licznik == 5) {
         position = 0
         licznik = 0
         slides.style.transform = `translate(${position}px)`
-    }
-    else {
+    } else {
         slides.style.transform = `translate(${position - 600}px)`
         position -= 600
         licznik++
     }
     const dotBtn = document.querySelector(`#dot${licznik+1}`)
     dotBtn.style.backgroundColor = 'black'
+    clearDots()
+}
+
+function clearDots() {
     for (let i = 1; i <= 6; i++) {
         if (i != licznik+1) {
             const otherDotBtn = document.querySelector(`#dot${i}`)
@@ -55,11 +80,9 @@ function slide() {
     }
 }
 
-// kasujemy setInterval
-// clearInterval(intervalRef)
-
-// kasujemy setTimeout
-// clearTimeout(intervalRef)
-
-
-// window.requestAnimationFrame
+function restartInterval() {
+    clearInterval(intervalRef)
+        intervalRef = setInterval(() => {
+            slide()
+        },5000)
+}
