@@ -56,6 +56,19 @@ rightButton.addEventListener('click', () => {
     clearDots()
 })
 
+run = true
+slides.addEventListener("click", () => {
+    if (run) {
+        clearInterval(intervalRef)
+        run = false
+    } else {
+        intervalRef = setInterval(() => {
+            slide()
+        },5000)
+        run = true
+    }
+})
+
 function slide() {
     if (licznik == 5) {
         position = 0
@@ -82,7 +95,7 @@ function clearDots() {
 
 function restartInterval() {
     clearInterval(intervalRef)
-        intervalRef = setInterval(() => {
-            slide()
-        },5000)
+    intervalRef = setInterval(() => {
+        slide()
+    },5000)
 }

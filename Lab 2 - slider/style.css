@@ -46,3 +46,8 @@
     background: rgba(0, 0, 0, 0.5);
     transition: all 1s ease;
 }
+
+.slide > * {
+    width: 600px;
+    text-align: center;
+}
