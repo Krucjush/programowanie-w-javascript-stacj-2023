@@ -21,7 +21,7 @@
     color: white;
     border: none;
     cursor: pointer;
-    transition: all 1s ease;
+    transition: width 1s ease, background 1s ease;
 }
 
 #right {
@@ -50,4 +50,38 @@
 .slide > * {
     width: 600px;
     text-align: center;
+}
+
+#buttons {
+    text-align: center;
+    position: relative;
+    top: -30px;
+    margin-right: 100px;
+}
+
+#slide-left, #slide-right, #cross-fade {
+    position: absolute;
+    width: 100px;
+    border-radius: 40%;
+    background: rgba(0, 0, 0, 0.5);
+    transition: transform 1s ease;
+    border: none;
+    color: white;
+}
+
+#slide-left {
+    left: 35.7%;
+}
+
+#cross-fade {
+    left: 50%;
+}
+
+#slide-right {
+    right: 30%;
+}
+
+#slide-left:hover, #slide-right:hover, #cross-fade:hover {
+    transform: scale(1.2);
+    transition: all 1s ease;
 }
