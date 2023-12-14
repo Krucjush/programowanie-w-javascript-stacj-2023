@@ -1,0 +1,24 @@
+#game-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#hole {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: black;
+    border-radius: 50%;
+}
+
+#ball {
+    position: absolute;
+    top: 50vh;
+    left: 50vw;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 50%;
+}
