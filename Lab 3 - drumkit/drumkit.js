@@ -42,27 +42,31 @@ function onKeyPress(event) {
     } else if (key === 'o') {
         playRecordedSoundsAll()
     }
-    
 }
+
 function playSound(sound) {
     sound.currentTime = 0
     sound.play()
 }
+
 function recordSound(key, soundSrc) {
     channels[currentChannel].push({ key, soundSrc })
     saveChannelsToSessionStorage()
 }
+
 function saveChannelsToSessionStorage() {
-    sessionStorage.setItem('channels', JSON.stringify(channels))
+    sessionStorage.setItem(channels, JSON.stringify(channels))
 }
+
 function playRecordedSounds(channel) {
-    channels[channel].forEach(({ key, soundSrc }) => {
+    channels[channel].forEach(({ soundSrc }, index) => {
         setTimeout(() => {
             const sound = new Audio(soundSrc)
             playSound(sound)
-        }, 1000)
+        }, 100 * index)
     })
 }
+
 function playRecordedSoundsAll() {
     Object.keys(channels).forEach(channel => {
         playRecordedSounds(parseInt(channel))
