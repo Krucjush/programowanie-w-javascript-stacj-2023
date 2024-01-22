@@ -9,7 +9,7 @@ firstBtn.style.backgroundColor = 'black'
 
 // wykonywanie kodu co określony czas
 let licznik = 0
-let type = "crossFade"
+let type = "right"
 let intervalRef = setInterval(() => {
     slide(type)
 },5000)

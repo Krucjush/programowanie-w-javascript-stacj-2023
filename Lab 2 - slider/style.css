@@ -11,7 +11,7 @@
     transition: transform 3s ease;
 }
 
-#left #right {
+#left, #right {
     height: 400px;
     width: 17px;
     position: absolute;

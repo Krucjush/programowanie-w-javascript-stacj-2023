@@ -1,8 +1,8 @@
 h2 {
     text-align: center;
 }
-.container {
-    position: relative;
+#numbers {
+    text-align: center;
 }
 #dodaj {
     width: 101px;
@@ -14,11 +14,6 @@ h2 {
     border-radius: 10px;
     cursor: pointer;
     background-color: lightgreen;
-}
-#dodaj:hover {
-    width: 110px;
-    height: 25px;
-    transition: 2s;
 }
 input {
     margin-right: 4px;
@@ -32,4 +27,8 @@ input {
 .removeButton:hover {
     background-color: rgb(255, 0, 0);
     color: gray;
+    cursor: pointer;
+}
+#wyniki {
+    padding: 10px;
 }
