@@ -4,7 +4,7 @@ h2 {
 .container {
     position: relative;
 }
-button {
+#dodaj {
     width: 101px;
     height: 22px;
     position: absolute;
@@ -15,8 +15,21 @@ button {
     cursor: pointer;
     background-color: lightgreen;
 }
-button:hover {
+#dodaj:hover {
     width: 110px;
     height: 25px;
     transition: 2s;
+}
+input {
+    margin-right: 4px;
+    margin-top: 4px;
+}
+.removeButton {
+    margin-left: -25px;
+    background-color: rgb(255, 124, 124);
+    color:white;
+}
+.removeButton:hover {
+    background-color: rgb(255, 0, 0);
+    color: gray;
 }

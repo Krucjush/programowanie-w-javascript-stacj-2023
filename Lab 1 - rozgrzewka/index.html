@@ -7,95 +7,12 @@
     <link rel="stylesheet" href="styles.css">
     <h2>Calculator</h2>
   </head>
-  <div class="container">
-    <div id="numbers">
-      <input type="text" id="number1"/>
-      <input type="text" id="number2"/>
-      <input type="text" id="number3"/>
+  <body>
+    <div class="container">
+      <div id="numbers"></div>
+      <button id="dodaj">Add input field</button>
+      <div id="wyniki"></div>
     </div>
-    <button id="dodaj">Add input field</button>
-    <div id="wyniki"></div>
-  </div>
-  <script src="main.js" type="text/javascript"></script>
-  <script type="text/javascript">
-
-    const wynik = document.querySelector('#wyniki')
-    let numbersCount = document.querySelector('#numbers').childElementCount
-
-    let valuesDictionary = new Object()
-
-    for (let i = 1; i <= numbersCount; i++) {
-      const inputElement = document.querySelector(`#number${i}`)
-      // Add event listeners for every input field
-      inputElement.addEventListener('change', () => {
-        calculate()
-      })
-    }
-
-    const node = document.querySelector('#numbers')
-
-    const dodajBtn = document.querySelector('#dodaj')
-    // Add event listenet for the button to add an input field every time it's clicked.
-    dodajBtn.addEventListener('click', () => {
-      const index = numbersCount + 1
-      const inputElement = document.createElement('input')
-      inputElement.setAttribute('type', 'text')
-      inputElement.setAttribute('id', `number${index}`)
-      // Add event listener to each input field created to calculate desired values each time any value changes.
-      inputElement.addEventListener('change', () => {
-        calculate()
-      })
-      inputElement.style.marginRight = '4px'
-      inputElement.style.marginTop = '4px'
-      // Append the element to the node.
-      node.appendChild(inputElement)
-      numbersCount = document.querySelector('#numbers').childElementCount
-    })
-
-    // Function for keeping track of currently filled input fields, and calculating sum, average, min and max value from the #numbers container.
-    function calculate() {
-      for (let j = 1; j <= numbersCount; j++) {
-          const input = document.querySelector(`#number${j}`)
-          // Input value as integer
-          const inputValue = parseInt(input.value)
-          
-          // If the input value is a number then add it to the dictionary, otherwise remove it.
-          if (!isNaN(inputValue)) {
-            valuesDictionary[`l${j}v`] = inputValue
-          }
-          else {
-            delete valuesDictionary[`l${j}v`]
-          }
-        }
-        // If at least one number is provided, then show the innerHTML.
-        if (Object.keys(valuesDictionary).length > 0) {
-          // Count the sum
-          const sum = Object.values(valuesDictionary).reduce((a, b) => a + b, 0)
-          // Count average
-          avg = sum / Object.keys(valuesDictionary).length
-          // Set max to -Infinity, so it will always be changed for any input.
-          let max = -Infinity
-          // Set min to Infinity, so it will always be changed for any input.
-          let min = Infinity
-          // For each existing value in the valuesDictionary check whether it's the max/min value/
-          for (key in valuesDictionary) {
-            if (valuesDictionary.hasOwnProperty(key)) {
-              const value = valuesDictionary[key]
-              if (value > max) {
-                max = value
-              }
-              if (value < min) {
-                min = value
-              }
-            }
-          }
-          wynik.innerHTML = `Sum: ${sum}<br>Average: ${avg}<br>Max: ${max}<br>Min: ${min}`
-        }
-        // If all inputs are empty, then hide the innerHTML by assigning it to an empty string.
-        else {
-          wynik.innerHTML = ''
-        }
-    }
-  </script>
-  <body></body>
+    <script src="/Lab 1 - rozgrzewka/main.js"></script>
+  </body>
 </html>
