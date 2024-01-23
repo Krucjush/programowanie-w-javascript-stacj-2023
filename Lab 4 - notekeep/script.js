@@ -55,10 +55,22 @@ document.addEventListener('DOMContentLoaded', () => {
       titleDiv.innerText = note.title
   
       const contentDiv = document.createElement('div')
-      contentDiv.innerText = note.content
+      contentDiv.className = 'note-content'
+      const contentInput = document.createElement('input')
+      contentInput.className = 'note-content-input'
+      contentInput.value = note.content
+      contentInput.addEventListener('change', () => {
+        note.content = contentInput.value
+        localStorage.setItem('notes', JSON.stringify(notes))
+      })
+      contentDiv.appendChild(contentInput)
   
       const optionsDiv = document.createElement('div')
       optionsDiv.className = 'note-options'
+
+      const dateDiv = document.createElement('div')
+      dateDiv.className = 'note-date'
+      dateDiv.innerText = new Date().toDateString()
   
       const deleteButton = document.createElement('button')
       deleteButton.innerText = 'Usuń'
@@ -67,6 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
       optionsDiv.appendChild(deleteButton)
   
       noteDiv.appendChild(titleDiv)
+      noteDiv.appendChild(dateDiv)
       noteDiv.appendChild(contentDiv)
       noteDiv.appendChild(optionsDiv)
   
