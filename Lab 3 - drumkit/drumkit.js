@@ -50,21 +50,27 @@ function playSound(sound) {
 }
 
 function recordSound(key, soundSrc) {
-    channels[currentChannel].push({ key, soundSrc })
+    const currentTime = Date.now()
+    channels[currentChannel].push({ key, soundSrc, timestamp: currentTime })
     saveChannelsToSessionStorage()
+    console.log(currentTime)
 }
 
 function saveChannelsToSessionStorage() {
     sessionStorage.setItem(channels, JSON.stringify(channels))
 }
 
-function playRecordedSounds(channel) {
-    channels[channel].forEach(({ soundSrc }, index) => {
+function playRecordedSounds(channel, index = 0) {
+    if (index < channels[channel].length) {
+        const { soundSrc, timestamp } = channels[channel][index]
+
         setTimeout(() => {
             const sound = new Audio(soundSrc)
             playSound(sound)
-        }, 100 * index)
-    })
+
+            playRecordedSounds(channel, index + 1)
+        }, index === 0 ? 0 : timestamp - channels[channel][index - 1].timestamp)
+    }
 }
 
 function playRecordedSoundsAll() {
