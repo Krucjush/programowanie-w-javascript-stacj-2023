@@ -1,0 +1,21 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: gray;
+}
+canvas {
+    border: 1px solid black;
+    background-color: gray;
+}
+div {
+    display: flex;
+    flex-direction: column;
+}
+button {
+    background-image: linear-gradient(to right, rgb(68, 62, 62), black, rgb(68, 62, 62));
+    color: red;
+    cursor: pointer;
+}
