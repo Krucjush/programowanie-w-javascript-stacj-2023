@@ -1,5 +1,3 @@
-// notatnik z zajęć
-
 let position = 0
 const main = document.querySelector('main')
 const slides = document.querySelector('.slides')
@@ -7,7 +5,6 @@ const slides = document.querySelector('.slides')
 const firstBtn = document.querySelector('#dot1')
 firstBtn.style.backgroundColor = 'black'
 
-// wykonywanie kodu co określony czas
 let licznik = 0
 let type = "right"
 let intervalRef = setInterval(() => {
@@ -78,11 +75,6 @@ slideRightButton.addEventListener("click", () => {
 slideLeftButton = document.querySelector("#slide-left")
 slideLeftButton.addEventListener("click", () => {
     type = "left"
-    restartInterval(type)
-})
-crossFadeButton = document.querySelector("#cross-fade")
-crossFadeButton.addEventListener("click", () => {
-    type = "crossFade"
     restartInterval(type)
 })
 

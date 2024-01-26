@@ -2,7 +2,7 @@ const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
 
 async function asyncAdd(...args) {
   let result = args[0]
-  console.log(result)
+  // console.log(result)
 
   for (let i = 1; i < args.length; i++) {
       result = await new Promise((resolve) => {
@@ -10,7 +10,7 @@ async function asyncAdd(...args) {
           resolve(result + args[i])
         }, 10)
       })
-      console.log(result)
+      // console.log(result)
     }
     return result
   }

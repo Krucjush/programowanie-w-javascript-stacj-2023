@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
       const contentDiv = document.createElement('div')
       contentDiv.className = 'note-content'
-      const contentInput = document.createElement('input')
+      const contentInput = document.createElement('textarea')
       contentInput.className = 'note-content-input'
       contentInput.value = note.content
       contentInput.addEventListener('change', () => {

@@ -45,3 +45,8 @@ body {
     top: 5px;
     right: 5px;
   }
+
+  .note-content-input {
+    min-height: 150px;
+    min-width: 320px;
+  }

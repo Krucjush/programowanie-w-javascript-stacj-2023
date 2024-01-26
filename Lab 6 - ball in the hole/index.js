@@ -117,7 +117,7 @@ function checkCollision(ball, hole) {
 }
 
 function collisionDone() {
-    let info = `Koniec! Zaliczone dziury: ${score}`;
+    let info = `Finish! Holes hit: ${score}`;
     if (score >= highScore) {
         highScore = score
         highScore1.textContent = highScore;
